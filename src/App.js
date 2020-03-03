@@ -29,14 +29,23 @@ class App extends Component {
     this.setState({ list: storeList})
   }
 
+  enterHandler = (event) => {
+    if (event.key === 'Enter'){
+      this.submit()
+    }
+  }
+
   render () {
     return (
       <div className="container">
+        <div>
+          <h1>Address Book</h1>
+        </div>
         <div className="addressBody">
           <button onClick={this.submit}>+</button>
-        <input type="text" value={this.state.currentInput} onChange={this.addHandler}></input>
+        <input type="text" value={this.state.currentInput} onChange={this.addHandler} onKeyPress={this.enterHandler}></input>
         {this.state.list.map((savedInput, index) => {
-          return <p key={index}>{savedInput} onClick={() => this.removeHandle(index)}</p>
+          return <p key={index} onClick={() => this.removeHandle(index)}>{savedInput}</p>
         })}
         </div>
       </div>
