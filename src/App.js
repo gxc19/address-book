@@ -4,7 +4,7 @@ import './App.css';
 class App extends Component {
   state = {
     list: [],
-    currentInput: " "
+    currentInput: ""
   }
 
   addHandler = e => {
@@ -39,14 +39,16 @@ class App extends Component {
     return (
       <div className="container">
         <div>
-          <h1>Address Book</h1>
+          <h1 className="title">Address Book</h1>
+        </div>
+        <div className="inputBox">
+          <input placeholder="Type Here" type="text" value={this.state.currentInput} onChange={this.addHandler} onKeyPress={this.enterHandler}></input>
+          <button onClick={this.submit}>+</button>
         </div>
         <div className="addressBody">
-          <button onClick={this.submit}>+</button>
-        <input type="text" value={this.state.currentInput} onChange={this.addHandler} onKeyPress={this.enterHandler}></input>
-        {this.state.list.map((savedInput, index) => {
-          return <p key={index} onClick={() => this.removeHandle(index)}>{savedInput}</p>
-        })}
+          {this.state.list.map((savedInput, index) => {
+            return <p key={index} onClick={() => this.removeHandle(index)}>{savedInput}</p>
+          })}
         </div>
       </div>
     )
